@@ -4,6 +4,8 @@
 
 This is plugin for [Acorn](http://marijnhaverbeke.nl/acorn/) - a tiny, fast JavaScript parser, written completely in JavaScript.
 
+**Fork of https://github.com/adrianheine/acorn5-object-spread to support old versions of node until acorn adopts rest-spread**
+
 It implements support for spread and rest properties as defined in the stage 3 proposal [Object Rest/Spread Properties for ECMAScript](https://github.com/tc39/proposal-object-rest-spread).
 
 ## Usage
