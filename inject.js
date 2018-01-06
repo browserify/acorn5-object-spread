@@ -9,9 +9,11 @@ module.exports = function (acorn) {
 
   var getCheckLVal = function (origCheckLVal) {
     return function (expr, bindingType, checkClashes) {
+      var self = this
       if (expr.type == "ObjectPattern") {
-        for (var prop of expr.properties)
-          this.checkLVal(prop, bindingType, checkClashes)
+        expr.properties.forEach(function (prop) {
+          self.checkLVal(prop, bindingType, checkClashes)
+        })
         return
       } else if (expr.type === "Property") {
         // AssignmentProperty has type == "Property"
@@ -56,11 +58,13 @@ module.exports = function (acorn) {
     instance.extend("checkLVal", getCheckLVal)
     instance.extend("toAssignable", function (nextMethod) {
       return function (node, isBinding) {
+        var self = this
         if (this.options.ecmaVersion >= 6 && node) {
           if (node.type == "ObjectExpression") {
             node.type = "ObjectPattern"
-            for (var prop of node.properties)
-              this.toAssignable(prop, isBinding)
+            node.properties.forEach(function (prop) {
+              self.toAssignable(prop, isBinding)
+            })
             return node
           } else if (node.type === "Property") {
             // AssignmentProperty has type == "Property"
@@ -76,9 +80,11 @@ module.exports = function (acorn) {
     })
     instance.extend("checkPatternExport", function (nextMethod) {
       return function (exports, pat) {
+        var self = this
         if (pat.type == "ObjectPattern") {
-          for (var prop of pat.properties)
-            this.checkPatternExport(exports, prop)
+          pat.properties.forEach(function(prop) {
+            self.checkPatternExport(exports, prop)
+          })
           return
         } else if (pat.type === "Property") {
           return this.checkPatternExport(exports, pat.value)
