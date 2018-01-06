@@ -13,7 +13,7 @@ It implements support for spread and rest properties as defined in the stage 3 p
 You can use this module directly in order to get an Acorn instance with the plugin installed:
 
 ```javascript
-var acorn = require('acorn5-object-spread');
+var acorn = require('acorn5-object-spread-es3');
 ```
 
 Or you can use `inject.js` for injecting the plugin into your own version of Acorn like this:
