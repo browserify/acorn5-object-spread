@@ -13,13 +13,13 @@ It implements support for spread and rest properties as defined in the stage 3 p
 You can use this module directly in order to get an Acorn instance with the plugin installed:
 
 ```javascript
-var acorn = require('acorn5-object-spread-es3');
+var acorn = require('@browserify/acorn5-object-spread-es3');
 ```
 
 Or you can use `inject.js` for injecting the plugin into your own version of Acorn like this:
 
 ```javascript
-var acorn = require('acorn5-object-spread/inject')(require('./custom-acorn'));
+var acorn = require('@browserify/acorn5-object-spread/inject')(require('./custom-acorn'));
 ```
 
 Then, use the `plugins` option whenever you need to support object spread or rest while parsing:
