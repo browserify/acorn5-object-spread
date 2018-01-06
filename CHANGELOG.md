@@ -1,5 +1,11 @@
 # acorn5-object-spread changelog
 
+## 5.0.1
+* Remove arrow functions so this plugin works in super old node.
+* let const -> var
+* for of -> .forEach
+* Add travis test way back to eternity.
+
 ## 4.0.0
 
 * Remove support for complex rest properties since they are forbidded by the
