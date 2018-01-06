@@ -2,6 +2,8 @@
 
 ## 5.0.1
 * Remove arrow functions so this plugin works in super old node.
+* let const -> var
+* for of -> .forEach
 * Add travis test way back to eternity.
 
 ## 4.0.0
