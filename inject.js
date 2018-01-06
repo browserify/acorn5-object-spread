@@ -1,16 +1,16 @@
 'use strict';
 
 module.exports = function (acorn) {
-  let acornVersion = acorn.version.match(/^5\.(\d+)\./)
+  var acornVersion = acorn.version.match(/^5\.(\d+)\./)
   if (!acornVersion || Number(acornVersion[1]) < 2) {
     throw new Error("Unsupported acorn version " + acorn.version + ", please use acorn 5 >= 5.2");
   }
   var tt = acorn.tokTypes;
 
-  const getCheckLVal = function (origCheckLVal) {
+  var getCheckLVal = function (origCheckLVal) {
     return function (expr, bindingType, checkClashes) {
       if (expr.type == "ObjectPattern") {
-        for (let prop of expr.properties)
+        for (var prop of expr.properties)
           this.checkLVal(prop, bindingType, checkClashes)
         return
       } else if (expr.type === "Property") {
@@ -25,7 +25,7 @@ module.exports = function (acorn) {
     instance.extend("parseProperty", function (nextMethod) {
       return function (isPattern, refDestructuringErrors) {
         if (this.options.ecmaVersion >= 6 && this.type === tt.ellipsis) {
-          let prop
+          var prop
           if (isPattern) {
             prop = this.startNode()
             this.next()
@@ -59,7 +59,7 @@ module.exports = function (acorn) {
         if (this.options.ecmaVersion >= 6 && node) {
           if (node.type == "ObjectExpression") {
             node.type = "ObjectPattern"
-            for (let prop of node.properties)
+            for (var prop of node.properties)
               this.toAssignable(prop, isBinding)
             return node
           } else if (node.type === "Property") {
@@ -77,7 +77,7 @@ module.exports = function (acorn) {
     instance.extend("checkPatternExport", function (nextMethod) {
       return function (exports, pat) {
         if (pat.type == "ObjectPattern") {
-          for (let prop of pat.properties)
+          for (var prop of pat.properties)
             this.checkPatternExport(exports, prop)
           return
         } else if (pat.type === "Property") {
