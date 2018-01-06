@@ -1,7 +1,7 @@
 {
   "name": "@browserify/acorn5-object-spread",
   "description": "Support for rest and spread properties in acorn 5",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "contributors": [
     "Darío Javier Cravero <dario@uxtemple.com>",
     "Adrian Heine <mail@adrianheine.de>",
